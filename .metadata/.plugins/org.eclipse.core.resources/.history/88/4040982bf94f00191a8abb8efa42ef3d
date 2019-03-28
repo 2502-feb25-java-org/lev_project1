@@ -1,0 +1,71 @@
+package com.revature.data;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.revature.pojos.User;
+import com.revature.servlets.LoginServlet;
+import com.revature.util.DBConnection;
+
+public class UserDOA {
+	private static Logger log = Logger.getLogger(UserDOA.class);
+	
+	public static List<User> getAllUsers(){
+		List<User> users = new ArrayList<User>();
+		String sql="select * from ERS.USERS";
+		
+		try (
+				Connection connection = DBConnection.getConnection();
+				//Statement statement=connection.createStatement();
+				//ResultSet resultSet = statement.executeQuery(sql);
+		) {		
+	        while (resultSet.next())
+	        {
+	        	int id = resultSet.getInt("ERS_USERS_ID");
+	        	String username = resultSet.getString("ERS_USERNAME");
+	        	String password = resultSet.getString("ERS_PASSWORD");
+	        	String firstName = resultSet.getString("USER_FIRST_NAME");
+	        	String lastName = resultSet.getString("USER_LAST_NAME");
+	        	String email = resultSet.getString("USER_EMAIL");
+	        	int roleId = resultSet.getInt("USER_ROLE_ID");
+	        	User user = new User(id, username, password, firstName, lastName, email, roleId);
+	        	users.add(user);
+	        }
+		}
+		catch (SQLException ex)  {
+			ex.printStackTrace();
+		}
+		return users;
+	}
+	
+	public User getByUsername(String username) {
+		User user = null;
+		try(Connection connection = DBConnection.getConnection();) {
+			String sql = "select * from demo_user where lower(username) = ?  ";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, username.toLowerCase());
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+	        	int id = resultSet.getInt("ERS_USERS_ID");
+	        	String username = resultSet.getString("ERS_USERNAME");
+	        	String password = resultSet.getString("ERS_PASSWORD");
+	        	String firstName = resultSet.getString("USER_FIRST_NAME");
+	        	String lastName = resultSet.getString("USER_LAST_NAME");
+	        	String email = resultSet.getString("USER_EMAIL");
+	        	int roleId = resultSet.getInt("USER_ROLE_ID");
+	        	User user = new User(id, username, password, firstName, lastName, email, roleId);
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return user;
+	}
+}

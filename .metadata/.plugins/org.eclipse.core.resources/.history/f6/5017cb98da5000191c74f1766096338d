@@ -1,0 +1,21 @@
+package com.revature.model;
+
+import java.awt.Image;
+import java.time.LocalDateTime;
+
+public class Reinbursement {
+	private Integer ammount;
+	private LocalDateTime submitted;
+	private LocalDateTime resolved;
+	private String description;
+	private String author;
+	private String resolver;
+	private String status;
+	private String type;
+	
+	
+	
+	
+	
+}
+

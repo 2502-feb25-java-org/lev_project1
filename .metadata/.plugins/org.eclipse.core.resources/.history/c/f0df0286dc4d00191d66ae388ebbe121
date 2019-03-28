@@ -1,0 +1,59 @@
+package com.revature.services;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import com.microsoft.sqlserver.jdbc.SQLServerDriver;
+
+import org.apache.log4j.Logger;
+
+import com.revature.servlets.LoginServlet;
+
+public class DBConnection {
+	
+	private Connection connection;
+	private static Logger log = Logger.getLogger(LoginServlet.class);
+	
+	
+	public DBConnection () {
+		log.info("TRYING TO CONNECT");
+		String hostName = "localhost";
+        String dbName = "TSQL";
+        String computer = "DESKTOP-2Q7B3SA";
+        String user = "Lev"; 
+        String password = "";
+       //2. Create a connection String
+        String url = String.format("jdbc:sqlserver://%s:1433;database=%s;user=%s\\%s;password=%s;integratedSecurity=true;", 
+        		hostName, dbName, computer, user, password);
+        
+        Connection connection = null;
+        try {
+        	Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        	//3. Initialize Connection String
+        	connection = DriverManager.getConnection(url);
+        	
+        	//Create Statement to Push the Query
+        	Statement statement=connection.createStatement();
+        	
+        	String sql="select [artistName] from Music.Artist";
+        	
+        	//ExecuteUpdate for Insert and Update
+        	//resultSet will hold the values for select query
+        	ResultSet artists=statement.executeQuery(sql);
+
+        	//next method will check for record every time
+        	while(artists.next()) {
+        		System.out.println(artists.getString("artistName"));        		
+        	}
+        	//make sure to close the ResultSet after read
+        	artists.close();
+        	log.info("SUCCESSS!");
+        	
+        }
+        catch(Exception ex) {
+        	ex.printStackTrace();
+        }
+    }
+}

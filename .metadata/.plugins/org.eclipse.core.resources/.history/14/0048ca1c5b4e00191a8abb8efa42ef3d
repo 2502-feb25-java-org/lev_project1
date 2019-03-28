@@ -1,0 +1,49 @@
+package com.revature.services;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.revature.pojos.User;
+import com.revature.servlets.LoginServlet;
+
+public class UserService {
+	private static Logger log = Logger.getLogger(UserService.class);
+	private static List<User> users = new ArrayList<User>();
+	
+	public List<User> getAllUsers(){
+		
+		String sql="select * from ERS.USERS";
+		
+		Connection connection = DBConnection.getConnection();
+		
+		try (Statement statement=connection.createStatement()) {
+			
+			ResultSet resultSet = statement.executeQuery(sql);
+		
+	        while (resultSet.next())
+	        {
+	        	int id = resultSet.getInt("ERS_USERS_ID");
+	        	String username = resultSet.getString("ERS_USERNAME");
+	        	String password = resultSet.getString("ERS_PASSWORD");
+	        	String firstName = resultSet.getString("USER_FIRST_NAME");
+	        	String lastName = resultSet.getString("USER_LAST_NAME");
+	        	String email = resultSet.getString("USER_EMAIL");
+	        	int roleId = resultSet.getInt("USER_ROLE_ID");
+	        	User user = new User(id, username, password, firstName, lastName, email, roleId);
+	        	log.info(user);
+	        	users.add(user);
+	        }
+	        resultSet.close();
+		}
+		catch (SQLException ex)  {
+			ex.printStackTrace();
+		}
+		return users;
+	}
+}

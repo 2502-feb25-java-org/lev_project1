@@ -1,0 +1,4 @@
+<div id="table"></div>
+<button type="button" id="pending">PENDING ONLY</button>
+<button type="button" id="approve">Approve</button>
+<button type="button" id="reject">Reject</button>

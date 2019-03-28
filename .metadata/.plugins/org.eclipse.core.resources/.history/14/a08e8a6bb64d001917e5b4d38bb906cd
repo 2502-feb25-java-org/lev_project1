@@ -1,0 +1,14 @@
+package com.revature.pojos;
+
+public class Status {
+	private int id;
+	private String status;
+	
+	public Status(int id, String status) {
+		super();
+		this.id = id;
+		this.status = status;
+	}
+	
+	
+}

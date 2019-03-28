@@ -1,0 +1,68 @@
+window.onload = function() {
+	console.log('app loading..');
+	loadLandingView();
+}
+
+function loadLandingView() {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+		// here is where we manipulate our response.. whenever we get it
+		if (xhr.readyState == 4) {
+			console.log('response received');
+			if (xhr.status == 200) {
+				// success
+				// we know that our response will be HTML
+				$('#view').html(xhr.responseText);
+
+				// ADD EVENT LISTENERS TO OUR HTML
+				$('#submit').on('click', loginUser);
+			}
+
+		}
+	}
+	xhr.open("GET", "login.view");
+	xhr.send();
+}
+
+
+function loginUser() {
+	
+	let username : $('#username').val();
+	let password : $('#password').val();
+	
+	if(validateStrings(user.username) || validateStrings(user.password)){
+	let xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState==4 && xhr.status==200){
+			let user = JSON.parse(xhr.responseText);
+			console.log(xhr.getAllResponseHeaders());
+			if(user == null){
+				// not logged in -- tell user about invalid credentials
+				$('#message').html('Sorry! Invalid credentials!');
+			}
+			else{
+				// logged in . do things
+				console.log(user);
+				loadHomeView(user);
+			}
+		}
+		
+	}
+	xhr.open("POST", "login");
+	xhr.setRequestHeader("Content-type", "application/json");
+	xhr.send(JSON.stringify(user));
+	}
+	else{
+		// user entered null data or otherwise invalid strings.
+		$('#message').html('Please enter valid username and password!');
+	}
+}
+
+	
+
+function validateStrings(str) {
+	if(str == null || str == '') 
+		return false;
+	else 
+		return true;
+}

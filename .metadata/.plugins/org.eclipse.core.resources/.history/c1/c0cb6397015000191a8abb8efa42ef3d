@@ -1,0 +1,114 @@
+package com.revature.pojos;
+
+import java.awt.Image;
+import java.time.LocalDateTime;
+
+public class Reinbursement {
+	private Integer id;
+	private Integer ammount;
+	private LocalDateTime submitted;
+	private LocalDateTime resolved;
+	private String description;
+	private Image receipt;
+	private Integer author;
+	private Integer resolver;
+	private Integer statusId;
+	private Integer typeId;
+	
+	public Reinbursement(Integer id, Integer ammount, LocalDateTime submitted, LocalDateTime resolved,
+			String description, Image receipt, Integer author, Integer resolver, Integer statusId, Integer typeId) {
+		super();
+		this.id = id;
+		this.ammount = ammount;
+		this.submitted = submitted;
+		this.resolved = resolved;
+		this.description = description;
+		this.receipt = receipt;
+		this.author = author;
+		this.resolver = resolver;
+		this.statusId = statusId;
+		this.typeId = typeId;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getAmmount() {
+		return ammount;
+	}
+
+	public void setAmmount(Integer ammount) {
+		this.ammount = ammount;
+	}
+
+	public LocalDateTime getSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(LocalDateTime submitted) {
+		this.submitted = submitted;
+	}
+
+	public LocalDateTime getResolved() {
+		return resolved;
+	}
+
+	public void setResolved(LocalDateTime resolved) {
+		this.resolved = resolved;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Image getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(Image receipt) {
+		this.receipt = receipt;
+	}
+
+	public Integer getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Integer author) {
+		this.author = author;
+	}
+
+	public Integer getResolver() {
+		return resolver;
+	}
+
+	public void setResolver(Integer resolver) {
+		this.resolver = resolver;
+	}
+
+	public Integer getStatusId() {
+		return statusId;
+	}
+
+	public void setStatusId(Integer statusId) {
+		this.statusId = statusId;
+	}
+
+	public Integer getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(Integer typeId) {
+		this.typeId = typeId;
+	}
+}
+
+

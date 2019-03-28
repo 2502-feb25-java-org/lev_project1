@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="C:\Users\Lev\scoop\apps\ojdkbuild8\current" version="1.8.0_201-1-ojdkbuild">
+<bootpath>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\resources.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\rt.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\sunrsasign.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\jsse.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\jce.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\charsets.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\jfr.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre" version="1.8.0_201-1-ojdkbuild">
+<bootpath>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\resources.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\rt.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\sunrsasign.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\jsse.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\jce.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\charsets.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\jfr.jar"/>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Users\Lev\scoop\apps\ojdkbuild8\current\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

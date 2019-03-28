@@ -1,0 +1,12 @@
+1553431009396	Rename field 'instance'
+1553626177197	Rename package 'com.revature.services'
+1553626239129	Rename type 'UserService'
+1553630337719	Rename package 'com.revature.pojos'
+1553632259825	Rename local variable 'req'
+1553632271340	Rename local variable 'resp'
+1553722958860	Rename field 'roleId'
+1553782571011	Move 'database.properties' to 'ERS'
+1553785684341	Delete element
+1553785688695	Delete element
+1553785692793	Delete element
+1553785732423	Rename local variable 'u'

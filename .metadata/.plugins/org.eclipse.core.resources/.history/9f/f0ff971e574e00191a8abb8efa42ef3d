@@ -1,0 +1,50 @@
+package com.revature.services;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.revature.pojos.User;
+import com.revature.servlets.LoginServlet;
+
+public class UserService {
+	private static Logger log = Logger.getLogger(UserService.class);
+	private static List<User> users = new ArrayList<User>();
+	private Connection connection;
+	
+	public UserService() {
+		connection = DBConnection.getConnection();
+		log.info("UserService Started");
+	}
+	
+	public List<User> getAll(){
+		connection
+		String sql="select [contactname] from Sales.Customers";
+//    	
+//
+//    	//next method will check for record every time
+//    	while(name.next()) {
+//    		log.info(name.getString("contactname"));        		
+//    	}
+//    	//make sure to close the ResultSet after read
+//    	name.close();
+		return users;
+	}
+	
+	public ResultSet getResult(String sql)
+	{
+		ResultSet result = null;
+		try (Statement statement=connection.createStatement()) {
+			result = statement.executeQuery(sql);
+		}
+		catch (SQLException ex)  {
+			ex.printStackTrace();
+		}
+		return result;
+	}
+}
