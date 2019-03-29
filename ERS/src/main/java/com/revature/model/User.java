@@ -8,8 +8,17 @@ public class User {
 	private String email;
 	private String role;
 	
-	public User(String username, String password, String firstName, String lastName, 
-			String email, String role) {
+	public User(String username, String password, String firstName, String lastName, String email, String role) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.role = role;
+	}
+
+	public User(String username, String firstName, String lastName, String email, String role) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;

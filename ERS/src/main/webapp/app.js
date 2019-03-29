@@ -112,9 +112,7 @@ function test(username, password) {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let user = xhr.responseText;
 				if (user == "invalid")
-					$('#view')
-							.html(
-									'<font color="red">Sorry! Invalid credentials!</font>');
+					$('#view').html('<font color="red">Sorry! Invalid credentials!</font>');
 				else
 					loadHomeView(user);
 			}

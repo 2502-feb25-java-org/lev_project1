@@ -1,0 +1,32 @@
+package com.revature.data;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+
+public class ReimbursementDOA {
+	private static Logger log = Logger.getLogger(UserDOA.class);
+	
+	public static List<Reimbursement> getByUsername(String username) {
+		String sql = "SELECT R.REIMB_SUBMITTED, T.REIMB_TYPE, R.REIMB_AMMOUNT,  S.REIMB_STATUS\r\n" + 
+				"FROM ERS.REIMBURSEMENT AS R\r\n" + 
+				"INNER JOIN ERS.USERS AS U\r\n" + 
+				"ON R.REIMB_AUTHOR = U.ERS_USERS_ID\r\n" + 
+				"INNER JOIN ERS.REIMBURSEMENT_TYPE AS T\r\n" + 
+				"ON R.REIMB_TYPE_ID = T.REIMB_TYPE_ID\r\n" + 
+				"INNER JOIN ERS.REIMBURSEMENT_STATUS AS S\r\n" + 
+				"ON R.REIMB_STATUS_ID = S.REIMB_STATUS_ID\r\n" + 
+				"WHERE U.ERS_USERNAME = LOWER(?);";
+		
+		try {
+			
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+}

@@ -45,7 +45,6 @@ public class LoginServlet extends HttpServlet {
 			log.info("CREATED SESSION " + session.getId() + " AT " + session.getCreationTime());
 			session.setAttribute("user", logged);
 		}
-
 		PrintWriter writer = response.getWriter();
 		writer.write(out);
 	}
