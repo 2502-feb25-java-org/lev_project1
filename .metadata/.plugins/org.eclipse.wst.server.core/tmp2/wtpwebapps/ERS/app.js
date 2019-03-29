@@ -1,20 +1,16 @@
 window.onload = function() {
 	console.log('app loading..');
 	loadLandingView();
-	//test("llevit", "lev123");
+	// test("llevit", "lev123");
 }
 
 function loadLandingView() {
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
-		if (xhr.readyState == 4) {
-			console.log('Servlet response received');
-			if (xhr.status == 200) {
-				console.log("Loading login.view");
-				$('#view').html(xhr.responseText);
-				if (xhr.responseText != "already_logged_in")
-					$('#submit').on('click', loginUser);
-			}
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			console.log("Loading login.view");
+			$('#view').html(xhr.responseText);
+			$('#submit').on('click', loginUser);
 		}
 	}
 	xhr.open("GET", "login.view");
@@ -33,7 +29,9 @@ function loginUser() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let user = xhr.responseText;
 				if (user == "invalid")
-					$('#message').html('<font color="red">Sorry! Invalid credentials!</font>');
+					$('#message')
+							.html(
+									'<font color="red">Sorry! Invalid credentials!</font>');
 				else
 					loadHomeView(user);
 			}
@@ -105,16 +103,18 @@ function validateStrings(str) {
 		return true;
 }
 
-//This function is for testing only
+// This function is for testing only
 function test(username, password) {
 	if (validateStrings(username) || validateStrings(password)) {
 		let xhr = new XMLHttpRequest();
-		let toSend = [username, password];
+		let toSend = [ username, password ];
 		xhr.onreadystatechange = function() {
 			if (xhr.readyState == 4 && xhr.status == 200) {
 				let user = xhr.responseText;
 				if (user == "invalid")
-					$('#view').html('<font color="red">Sorry! Invalid credentials!</font>');
+					$('#view')
+							.html(
+									'<font color="red">Sorry! Invalid credentials!</font>');
 				else
 					loadHomeView(user);
 			}
