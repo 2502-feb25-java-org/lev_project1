@@ -18,7 +18,8 @@ public class UserDOA {
 	private static Logger log = Logger.getLogger(UserDOA.class);
 	
 	public static User getByUsername(String username) {
-		String sql = "select U.ERS_USERNAME, U.ERS_PASSWORD, U.USER_FIRST_NAME, U.USER_LAST_NAME, R.USER_ROLES\r\n" + 
+		String sql = "select U.ERS_USERNAME, U.ERS_PASSWORD, U.USER_FIRST_NAME, " +
+				"U.USER_LAST_NAME, U.USER_EMAIL, R.USER_ROLES\r\n" + 
 				"FROM ERS.USERS AS U\r\n" + 
 				"INNER JOIN ERS.USER_ROLES AS R\r\n" + 
 				"ON U.USER_ROLE_ID = R.ERS_USER_ROLE_ID\r\n" + 

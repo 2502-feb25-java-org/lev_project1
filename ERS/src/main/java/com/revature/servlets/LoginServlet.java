@@ -34,13 +34,8 @@ public class LoginServlet extends HttpServlet {
 		ObjectMapper mapper = new ObjectMapper();
 		log.info(request.getInputStream());
 		String[] loginInfo = mapper.readValue(request.getInputStream(), String[].class);
-
 		log.info("attempting to log in user -- " + loginInfo[0]);
-
-		// consult service layer (call methods from the service class) . is
-		// username/password valid?
 		User logged = UserService.logIn(loginInfo[0], loginInfo[1]);
-		// if so, return JSON string of user
 		String out = "";
 		if (logged == null) {
 			out = "invalid";
@@ -52,7 +47,6 @@ public class LoginServlet extends HttpServlet {
 		}
 
 		PrintWriter writer = response.getWriter();
-		response.setContentType("application/json");
 		writer.write(out);
 	}
 }
