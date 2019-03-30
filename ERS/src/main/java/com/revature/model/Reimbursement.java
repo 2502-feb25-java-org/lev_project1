@@ -26,15 +26,6 @@ public class Reimbursement {
 		this.type = type;
 	}
 
-	public Reimbursement(Double ammount, Date submitted, String status, String type) {
-		super();
-		this.ammount = ammount;
-		this.submitted = submitted;
-		this.author = author;
-		this.status = status;
-		this.type = type;
-	}
-
 	public Double getAmmount() {
 		return ammount;
 	}
@@ -97,6 +88,14 @@ public class Reimbursement {
 
 	public void setType(String type) {
 		this.type = type;
-	}	
+	}
+
+	@Override
+	public String toString() {
+		return "Reimbursement [ammount=" + ammount + ", submitted=" + submitted + ", resolved=" + resolved
+				+ ", description=" + description + ", author=" + author + ", resolver=" + resolver + ", status="
+				+ status + ", type=" + type + "]";
+	}
+	
 }
 

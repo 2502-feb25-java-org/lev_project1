@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,19 +14,23 @@ import com.revature.model.Reimbursement;
 import com.revature.util.DBConnection;
 
 public class ReimbursementDOA {
-	private static Logger log = Logger.getLogger(UserDOA.class);
+	private static Logger log = Logger.getLogger(ReimbursementDOA.class);
 	
 	public static List<Reimbursement> getByUsername(String username) {
-		String sql = "SELECT R.REIMB_SUBMITTED, T.REIMB_TYPE, R.REIMB_AMMOUNT,  S.REIMB_STATUS\r\n" + 
-				"FROM ERS.REIMBURSEMENT AS R\r\n" + 
-				"INNER JOIN ERS.USERS AS U\r\n" + 
-				"ON R.REIMB_AUTHOR = U.ERS_USERS_ID\r\n" + 
-				"INNER JOIN ERS.REIMBURSEMENT_TYPE AS T\r\n" + 
-				"ON R.REIMB_TYPE_ID = T.REIMB_TYPE_ID\r\n" + 
-				"INNER JOIN ERS.REIMBURSEMENT_STATUS AS S\r\n" + 
-				"ON R.REIMB_STATUS_ID = S.REIMB_STATUS_ID\r\n" + 
-				"WHERE U.ERS_USERNAME = LOWER(?);";
 		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		String sql = "SELECT R.REIMB_SUBMITTED, E.USER_FIRST_NAME, E.USER_LAST_NAME, \r\n" + 
+				"T.REIMB_TYPE, R.REIMB_AMMOUNT, R.REIMB_DESCRIPTION ,S.REIMB_STATUS, \r\n" + 
+				"R.REIMB_RESOLVED, M.USER_FIRST_NAME, M.USER_LAST_NAME \r\n" + 
+				"FROM ERS.REIMBURSEMENT AS R\r\n" + 
+				"JOIN ERS.USERS AS E\r\n" + 
+				"ON R.REIMB_AUTHOR = E.ERS_USERS_ID\r\n" + 
+				"JOIN ERS.REIMBURSEMENT_TYPE AS T\r\n" + 
+				"ON R.REIMB_TYPE_ID = T.REIMB_TYPE_ID\r\n" + 
+				"JOIN ERS.REIMBURSEMENT_STATUS AS S\r\n" + 
+				"ON R.REIMB_STATUS_ID = S.REIMB_STATUS_ID\r\n" + 
+				"LEFT JOIN ERS.USERS AS M\r\n" + 
+				"ON R.REIMB_RESOLVER = M.ERS_USERS_ID\r\n" + 
+				"WHERE E.ERS_USERNAME = LOWER(?);";
 		try (	
 			Connection connection = DBConnection.getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);				
@@ -33,20 +38,29 @@ public class ReimbursementDOA {
 			log.info("Connecting to the database to get REIMBURSEMENTS");
 			preparedStatement.setString(1, username.toLowerCase());
 			ResultSet resultSet = preparedStatement.executeQuery();
-			while(resultSet.next()) {
-				Double ammount = resultSet.getDouble("REIMB_AMMOUNT");
-				Date submitted = resultSet.getDate("REIMB_SUBMITTED");
-				String status = resultSet.getString("REIMB_STATUS");
-				String type = resultSet.getString("REIMB_TYPE");
-				reimbursements.add(new Reimbursement(ammount, submitted, status, type));
-				log.info("Connected successfully!");
-			}
+			log.info("Connected successfully!");
+			reimbursements = getFromResultset(resultSet);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.info(reimbursements);
 		return reimbursements;
 	}
-
+	
+	private static List<Reimbursement> getFromResultset(ResultSet resultSet) throws SQLException{
+		List<Reimbursement> reimbursements = new ArrayList<Reimbursement>();
+		while(resultSet.next()) {
+			Date submitted = resultSet.getDate(1);
+			String author = resultSet.getString(2) + " " + resultSet.getString(3);
+			String type = resultSet.getString(4);
+			Double ammount = resultSet.getDouble(5);
+			String description = resultSet.getString(6);
+			String status = resultSet.getString(7);
+			Date resolved = resultSet.getDate(8);
+			String resolver = resultSet.getString(9) + " " + resultSet.getString(10);	
+			reimbursements.add(new Reimbursement(ammount, submitted, resolved,
+										description, author, resolver, status, type));
+		}
+		return reimbursements;	
+	}
 }

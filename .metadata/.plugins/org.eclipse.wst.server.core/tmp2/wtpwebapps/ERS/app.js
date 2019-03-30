@@ -1,10 +1,11 @@
 window.onload = function() {
 	console.log('app loading..');
-	loadLandingView();
-	// test("llevit", "lev123");
+	//loadLandingView();
+	test("llevit", "lev123");
 }
 
 function loadLandingView() {
+	$('#view').html("Loading view...");
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status == 200) {
@@ -47,21 +48,21 @@ function loadHomeView(user) {
 	let userArray = user.split(" ");
 	let firstName = userArray[0];
 	let lastName = userArray[1];
-	let role = userArray[2];
+	let role = userArray[2].toLowerCase();
+	
 	console.log("Loging in: " + userArray);
-	if (role.toLowerCase() == "fi_manager") {
+	
+	if (role == "fi_manager") 
 		view = "manager.view";
-		loadEventListeners = managerEventListeners;
-	} else {
+	else 
 		view = "employee.view";
-		loadEventListeners = employeeEventListeners;
-	}
+	
 	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.responseText) {
 			$('#view').html(xhr.responseText);
 			$('#name').html(firstName + " " + lastName);
-			loadEventListeners();
+			loadTable(role);
 		}
 	}
 	console.log("Loading " + view);
@@ -69,16 +70,28 @@ function loadHomeView(user) {
 	xhr.send();
 }
 
-function employeeEventListeners() {
-	console.log("Employee event listeners started");
+function loadTable(role) {
+	if (role == "fi_manager")
+		requestServlet = "manager"
+	else
+		requestServlet = "employee"
+	
+	let xhr = new XMLHttpRequest;
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4 && xhr.responseText) {
+			$('#table').html(xhr.responseText);
+		}
+	}
+	xhr.open("GET", requestServlet);
+	xhr.send();	
 }
 
-function managerEventListeners() {
+function loadManagerView() {
 	console.log("Manager event listeners started");
 }
 
 function getReinbursements() {
-	var xhr = new XMLHttpRequest();
+	let xhr = new XMLHttpRequest();
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.responseText) {
 			$('#view').html(xhr.responseText);

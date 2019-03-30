@@ -1,17 +1,42 @@
 package com.revature.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.log4j.Logger;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.revature.data.UserDOA;
+import com.revature.model.Reimbursement;
+import com.revature.model.User;
+import com.revature.service.ReimbursementService;
 
 @WebServlet("/employee")
 public class EmployeeServlet extends HttpServlet {
+	private static Logger log = Logger.getLogger(EmployeeServlet.class);
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		log.info("Getting session...");
+		HttpSession session = request.getSession();	
+		User user = (User) session.getAttribute("user");
+		log.info("Getting session for " + user.getUsername());
+		
+		List<Reimbursement> reimbursements = ReimbursementService.getByUsername(user.getUsername());
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(reimbursements);
+		response.setContentType("application/json");
+		log.info("Reimbursements found:" + json);
+		PrintWriter writer = response.getWriter();
+		writer.write(json);
 	}
 }
