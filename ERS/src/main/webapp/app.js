@@ -96,6 +96,7 @@ function loadEmployeeTable() {
 			let reimbursements = JSON.parse(xhr.responseText);
 			$('#employee_table').DataTable( {
 				destroy: true,
+				"pageLength": 50,
 				data: reimbursements,
 				columns: [
 					{data: 'submitted'},
