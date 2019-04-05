@@ -1,6 +1,0 @@
-driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-server=jdbc:sqlserver://localhost:1433
-database=ERS
-username=DESKTOP-2Q7B3SA\\Lev
-password=
-url=jdbc:sqlserver://%s;database=%s;user=%s;password=%s;integratedSecurity=true;

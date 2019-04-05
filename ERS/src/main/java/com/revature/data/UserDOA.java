@@ -18,8 +18,8 @@ public class UserDOA {
 	private static Logger log = Logger.getLogger(UserDOA.class);
 	
 	public static User getByUsername(String username) {
-		String sql = "SELECT U.ERS_USERNAME, U.ERS_PASSWORD, U.USER_FIRST_NAME, " +
-				"U.USER_LAST_NAME, U.USER_EMAIL, R.USER_ROLES\r\n" + 
+		String sql = "SELECT U.ERS_USERS_ID, U.ERS_USERNAME, U.ERS_PASSWORD,\r\n" + 
+				"U.USER_FIRST_NAME, U.USER_LAST_NAME, U.USER_EMAIL, R.USER_ROLES\r\n" + 
 				"FROM ERS.USERS AS U\r\n" + 
 				"INNER JOIN ERS.USER_ROLES AS R\r\n" + 
 				"ON U.USER_ROLE_ID = R.ERS_USER_ROLE_ID\r\n" + 
@@ -32,15 +32,15 @@ public class UserDOA {
 			preparedStatement.setString(1, username.toLowerCase());
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
-	        	username = resultSet.getString("ERS_USERNAME");
+	        	Integer id = resultSet.getInt("ERS_USERS_ID");
+				username = resultSet.getString("ERS_USERNAME");
 	        	String password = resultSet.getString("ERS_PASSWORD");
 	        	String firstName = resultSet.getString("USER_FIRST_NAME");
 	        	String lastName = resultSet.getString("USER_LAST_NAME");
 	        	String email = resultSet.getString("USER_EMAIL");
 	        	String role = resultSet.getString("USER_ROLES");
-	        	user = new User(username, password, firstName, lastName, email, role);
+	        	user = new User(id, username, password, firstName, lastName, email, role);
 			}
-		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

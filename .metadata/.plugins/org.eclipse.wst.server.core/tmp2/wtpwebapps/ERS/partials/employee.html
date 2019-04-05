@@ -1,6 +1,17 @@
-<h2>REIMBURSEMENTS</h2>
-<h3>Welcome <span id="name"></span></h3>
-<div id="table"></div>
-<button type="button" id="pending">PENDING ONLY</button>
-<button type="button" id="approve">Approve</button>
-<button type="button" id="reject">Reject</button>
+<h2 style="font-family: 'Arial Black', Gadget, sans-serif" class="text-center">REIMBURSEMENT VIEW</h2>
+<h4 class="text-center">Welcome <span id="name"></span></h4>
+<table id="employee_table" style="width:100%" class="display cell-border">
+    <thead>
+        <tr>
+ 			<th>Submitted</th>
+			<th>Type</th>
+			<th>Amount</th>
+			<th>Status</th>		
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+<button type="button" id="add_button">Add Expense</button>
+<div id="add_form"></div>
+<p></p>
+<button type="button" id="logout">Log Out</button>

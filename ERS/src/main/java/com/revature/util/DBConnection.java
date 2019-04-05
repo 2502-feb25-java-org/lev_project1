@@ -24,9 +24,9 @@ public class DBConnection {
 		Connection connection = null;
 
 		try {
-			log.info(System.getProperty("user.dir"));
-			
+			//log.info(System.getProperty("user.dir"));
 			//prop.load(new FileReader(path));
+			
 			String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 			String server = "jdbc:sqlserver://localhost:1433";
 			String database = "ERS";

@@ -1,22 +1,25 @@
 package com.revature.model;
 
 import java.awt.Image;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Reimbursement {
-	private Double ammount;
-	private Date submitted;
-	private Date resolved;
+	private Integer id;
+	private Double amount;
+	private String submitted;
+	private String resolved;
 	private String description;
 	private String author;
 	private String resolver;
 	private String status;
 	private String type;
+	private Image receipt;
 	
-	public Reimbursement(Double ammount, Date submitted, Date resolved, String description,
+	public Reimbursement(Integer id, Double ammount, String submitted, String resolved, String description,
 			String author, String resolver, String status, String type) {
 		super();
-		this.ammount = ammount;
+		this.id = id;
+		this.amount = ammount;
 		this.submitted = submitted;
 		this.resolved = resolved;
 		this.description = description;
@@ -25,28 +28,50 @@ public class Reimbursement {
 		this.status = status;
 		this.type = type;
 	}
-
-	public Double getAmmount() {
-		return ammount;
+	
+	public Reimbursement(Double amount, String submitted, String description, String author, String status,
+			String type) {
+		super();
+		this.amount = amount;
+		this.submitted = submitted;
+		this.description = description;
+		this.author = author;
+		this.status = status;
+		this.type = type;
 	}
 
-	public void setAmmount(Double ammount) {
-		this.ammount = ammount;
+	public Reimbursement(Integer id, String resolved, String status) {
+		super();
+		this.id = id;
+		this.resolved = resolved;
+		this.status = status;
 	}
 
-	public Date getSubmitted() {
+	public Integer getId() {
+		return id;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double ammount) {
+		this.amount = ammount;
+	}
+
+	public String getSubmitted() {
 		return submitted;
 	}
 
-	public void setSubmitted(Date submitted) {
+	public void setSubmitted(String submitted) {
 		this.submitted = submitted;
 	}
 
-	public Date getResolved() {
+	public String getResolved() {
 		return resolved;
 	}
 
-	public void setResolved(Date resolved) {
+	public void setResolved(String resolved) {
 		this.resolved = resolved;
 	}
 
@@ -90,12 +115,19 @@ public class Reimbursement {
 		this.type = type;
 	}
 
+	public Image getReceipt() {
+		return receipt;
+	}
+
+	public void setReceipt(Image receipt) {
+		this.receipt = receipt;
+	}
+
 	@Override
 	public String toString() {
-		return "Reimbursement [ammount=" + ammount + ", submitted=" + submitted + ", resolved=" + resolved
+		return "Reimbursement [id=" + id + ", amount=" + amount + ", submitted=" + submitted + ", resolved=" + resolved
 				+ ", description=" + description + ", author=" + author + ", resolver=" + resolver + ", status="
 				+ status + ", type=" + type + "]";
 	}
-	
 }
 

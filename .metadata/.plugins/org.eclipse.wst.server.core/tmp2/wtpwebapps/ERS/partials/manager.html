@@ -1,2 +1,28 @@
-<h2>REIMBURSEMENT MANAGEMENT</h2>
-<h3>Welcome <span id="name"></span></h3>
+<h2 style="font-family: 'Arial Black', Gadget, sans-serif"
+	class="text-center">REIMBURSEMENT MANAGEMENT</h2>
+<h3 class="text-center">
+	Welcome <span id="name"></span>
+</h3>
+<h5 class="text-center">
+	<font color="green" id="description"></font>
+</h5>
+<table id="manager_table" style="width:100%" class="display cell-border">
+	<thead>
+		<tr>
+			<th>Submitted</th>
+			<th>Author</th>
+			<th>Type</th>
+			<th>Amount</th>
+			<th>Status</th>
+			<th>Resolved</th>
+			<th>Resolver</th>
+		</tr>
+	</thead>
+	<tbody></tbody>
+</table>
+<div id="message"></div>
+<button type="button" id="pending">Pending Only</button>
+<button type="button" id="approve" disabled>Approve</button>
+<button type="button" id="deny" disabled>Deny</button>
+<p></p>
+<button type="button" id="logout">Log Out</button>

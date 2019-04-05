@@ -1,4 +1,0 @@
-driver=com.microsoft.sqlserver.jdbc.SQLServerDriver
-url=jdbc:sqlserver://%s:1433;database=%s;user=%s;password=%s;integratedSecurity=true;
-user=DESKTOP-2Q7B3SA\\Lev
-password=

@@ -1,7 +1,6 @@
 INDEX VERSION 1.4+C:\Java\JavaLearning\lev_project1\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
 1902409268.index
 1724811071.index
-2675945576.index
 713772116.index
 2899326649.index
 2887851957.index
